@@ -24,20 +24,20 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/Analog Emery 200.png",
+                    "name": "ANALOG_EMERY_200",
+                    "targetPlatforms": [
+                        "emery"
+                    ],
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/Pebble_Battery_Charging_Icon.png",
                     "name": "BATTERY_CHARGING_ICON",
                     "targetPlatforms": [
                         "aplite",
                         "basalt",
                         "diorite"
-                    ],
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/Analog Emery Full Res.png",
-                    "name": "ANALOG_EMERY_FULL",
-                    "targetPlatforms": [
-                        "emery"
                     ],
                     "type": "bitmap"
                 },

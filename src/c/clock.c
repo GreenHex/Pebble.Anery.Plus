@@ -164,7 +164,7 @@ void clock_init( Window *window ) {
   GRect clock_layer_bounds = GRect( window_bounds.origin.x + CLOCK_POS_X, window_bounds.origin.y + CLOCK_POS_Y, 
                                    window_bounds.size.w - CLOCK_POS_X, window_bounds.size.h - CLOCK_POS_Y );
   //
-  analog_clock_bitmap = gbitmap_create_with_resource( RESOURCE_ID_ANALOG_EMERY_FULL );
+  analog_clock_bitmap = gbitmap_create_with_resource( RESOURCE_ID_ANALOG_EMERY_200 );
   analog_clock_bitmap_layer = bitmap_layer_create( clock_layer_bounds );
   bitmap_layer_set_bitmap( analog_clock_bitmap_layer, analog_clock_bitmap );
   layer_add_child( window_layer, bitmap_layer_get_layer( analog_clock_bitmap_layer ) );

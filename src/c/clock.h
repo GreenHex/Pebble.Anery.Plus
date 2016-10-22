@@ -3,7 +3,7 @@
 #include "config.h"
 
 #define CLOCK_POS_X 0
-#define CLOCK_POS_Y 0
+#define CLOCK_POS_Y 28
 #define SEC_HAND_LENGTH 72
 #define SEC_HAND_TAIL_LENGTH 28
 #define SEC_HAND_TIP_LENGTH 16
