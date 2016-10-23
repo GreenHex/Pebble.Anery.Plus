@@ -3,17 +3,17 @@
 #include "config.h"
 
 #define CLOCK_POS_X 0
-#define CLOCK_POS_Y 52 + 1
-#define SEC_HAND_LENGTH 45
+#define CLOCK_POS_Y 76
+#define SEC_HAND_LENGTH 52
 #define SEC_HAND_TAIL_LENGTH 20
 #define SEC_HAND_TIP_LENGTH 10
-#define MIN_HAND_LENGTH 40
-#define HOUR_HAND_LENGTH 26
+#define MIN_HAND_LENGTH 50
+#define HOUR_HAND_LENGTH 32
 #define SEC_HAND_WIDTH 1
-#define MIN_HAND_WIDTH 5
-#define HOUR_HAND_WIDTH 7
+#define MIN_HAND_WIDTH 7
+#define HOUR_HAND_WIDTH 9
 #define CENTER_DOT_RADIUS 9
-#define DIGITAL_CLOCK_TEXT_Y_POS 23
+#define DIGITAL_CLOCK_TEXT_Y_POS 34
 
 #define COLOUR_DOT              PBL_IF_COLOR_ELSE( GColorWhite, GColorWhite )
 #define COLOUR_DOT_OUTLINE      PBL_IF_COLOR_ELSE( GColorDarkGray, GColorBlack )

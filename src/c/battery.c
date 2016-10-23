@@ -17,7 +17,7 @@ static void handle_battery( BatteryChargeState charge_state ) {
     layer_set_hidden( bitmap_layer_get_layer( charging_icon_bitmap_layer ), true );
   }
 
-  GColor batt_txt_colour = GColorBlack;
+  GColor batt_txt_colour = GColorWhite; // GColorBlack;
   #if defined( PBL_COLOR )
   if ( charge_state.charge_percent < 6 ) {
     batt_txt_colour = COLOUR_BATT_5;
@@ -43,7 +43,7 @@ static void handle_battery( BatteryChargeState charge_state ) {
 
 void battery_init( Window *window ) {
   window_layer = window_get_root_layer( window );
-  batt_layer = text_layer_create( GRect( 111, 1, 32, 15 ) );
+  batt_layer = text_layer_create( GRect( 200-32-1, 1, 32, 15 ) );
   batt_font = fonts_load_custom_font( resource_get_handle( RESOURCE_ID_FONT_DROIDSANS_12 ) );
   text_layer_set_font( batt_layer, batt_font );
   text_layer_set_background_color( batt_layer, GColorClear );

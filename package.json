@@ -38,6 +38,14 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/Analog Emery 152.png",
+                    "name": "ANALOG_EMERY_152",
+                    "targetPlatforms": [
+                        "emery"
+                    ],
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/pebble_watchface_icon.png",
                     "menuIcon": true,
                     "name": "PEBBLE_WATCHFACE_ICON",
@@ -49,14 +57,6 @@
                 {
                     "file": "images/Pebble_Battery_Charging_Icon.png",
                     "name": "BATTERY_CHARGING_ICON",
-                    "targetPlatforms": [
-                        "emery"
-                    ],
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/BT2 Analog Clockface.png",
-                    "name": "IMAGE_ANALOG_CLOCKFACE",
                     "targetPlatforms": [
                         "emery"
                     ],
@@ -116,7 +116,7 @@
         "targetPlatforms": [
             "emery"
         ],
-        "uuid": "ad5c2ccd-8075-4605-b9e3-68acde02a15e",
+        "uuid": "85f57bc6-7a15-458e-800e-e33c190943d7",
         "watchapp": {
             "watchface": true
         }

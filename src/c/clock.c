@@ -10,7 +10,6 @@ static Layer *window_layer = 0;
 static BitmapLayer *analog_clock_bitmap_layer = 0;
 static Layer *analog_clock_layer = 0;
 static TextLayer *digital_clock_text_layer = 0;
-static BitmapLayer *top_black_out_layer = 0;
 static GBitmap *analog_clock_bitmap = 0;
 static GFont large_digital_font = 0;
 static AppTimer* secs_display_apptimer = 0; 
@@ -196,10 +195,8 @@ static void prv_unobstructed_change( AnimationProgress progress, void *window_ro
 }
 
 static void prv_unobstructed_did_change( void *context ) {
-  GRect unobstructed_bounds = layer_get_unobstructed_bounds( window_layer );
-  GRect full_bounds = layer_get_bounds( window_layer );
-
-  layer_set_hidden( bitmap_layer_get_layer( top_black_out_layer ), grect_equal( &full_bounds, &unobstructed_bounds) );  
+  // GRect unobstructed_bounds = layer_get_unobstructed_bounds( window_layer );
+  // GRect full_bounds = layer_get_bounds( window_layer );  
 }
 
 static void stop_seconds_display( void* data ) { // after timer elapses
@@ -233,7 +230,7 @@ void clock_init( Window *window ) {
   GRect clock_layer_bounds = GRect( window_bounds.origin.x + CLOCK_POS_X, window_bounds.origin.y + CLOCK_POS_Y, 
                                    window_bounds.size.w - CLOCK_POS_X, window_bounds.size.h - CLOCK_POS_Y );
   //
-  analog_clock_bitmap = gbitmap_create_with_resource( RESOURCE_ID_IMAGE_ANALOG_CLOCKFACE );
+  analog_clock_bitmap = gbitmap_create_with_resource( RESOURCE_ID_ANALOG_EMERY_152 );
   analog_clock_bitmap_layer = bitmap_layer_create( clock_layer_bounds );
   bitmap_layer_set_bitmap( analog_clock_bitmap_layer, analog_clock_bitmap );
   layer_add_child( window_layer, bitmap_layer_get_layer( analog_clock_bitmap_layer ) );
@@ -252,12 +249,6 @@ void clock_init( Window *window ) {
   layer_set_hidden( text_layer_get_layer( digital_clock_text_layer ), true );
   large_digital_font = fonts_load_custom_font( resource_get_handle( RESOURCE_ID_FONT_EXO_50 ) );
 
-  // required for blacking out unsighty white line at top when quick view is on
-  top_black_out_layer = bitmap_layer_create( GRect( 0, 0, 144, 3 ) );
-  bitmap_layer_set_background_color( top_black_out_layer, GColorBlack );
-  layer_add_child( window_layer, bitmap_layer_get_layer( top_black_out_layer ) );
-  layer_set_hidden( bitmap_layer_get_layer( top_black_out_layer ), true );
-
   // subscriptions
   UnobstructedAreaHandlers handler = {
     .change = prv_unobstructed_change,
@@ -275,7 +266,6 @@ void clock_deinit( void ) {
   if ( secs_display_apptimer ) app_timer_cancel( secs_display_apptimer );
   accel_tap_service_unsubscribe(); // are we over-unsubscribing?
   tick_timer_service_unsubscribe();
-  bitmap_layer_destroy( top_black_out_layer );
   text_layer_destroy( digital_clock_text_layer );
   bitmap_layer_destroy( analog_clock_bitmap_layer );
   layer_destroy( analog_clock_layer );
