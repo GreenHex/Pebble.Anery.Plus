@@ -72,7 +72,7 @@ void calendar_init( Window *window ) {
   window_layer = window_get_root_layer( window );
 
   // Black line at top
-  line_layer = bitmap_layer_create( GRect( 0, 0, 200, 18 /* 5, 17, 200 - 10, 1 */ ) );
+  line_layer = bitmap_layer_create( GRect( 5, 17, 200 - 10, 1 ) );
   bitmap_layer_set_background_color( line_layer, COLOUR_LINE_LAYER );
   layer_add_child( window_layer, bitmap_layer_get_layer( line_layer ) );
 

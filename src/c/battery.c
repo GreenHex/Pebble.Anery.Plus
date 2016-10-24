@@ -17,7 +17,7 @@ static void handle_battery( BatteryChargeState charge_state ) {
     layer_set_hidden( bitmap_layer_get_layer( charging_icon_bitmap_layer ), true );
   }
 
-  GColor batt_txt_colour = GColorWhite; // GColorBlack;
+  GColor batt_txt_colour = GColorBlack;
   #if defined( PBL_COLOR )
   if ( charge_state.charge_percent < 6 ) {
     batt_txt_colour = COLOUR_BATT_5;
