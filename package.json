@@ -39,6 +39,22 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/Analog Emery 150.png",
+                    "name": "ANALOG_EMERY_150",
+                    "targetPlatforms": [
+                        "emery"
+                    ],
+                    "type": "bitmap"
+                },
+                {
+                    "file": "fonts/DroidSans_16.ttf",
+                    "name": "FONT_DROIDSANS_16",
+                    "targetPlatforms": [
+                        "emery"
+                    ],
+                    "type": "font"
+                },
+                {
                     "file": "images/Analog Emery 152.png",
                     "name": "ANALOG_EMERY_152",
                     "targetPlatforms": [
@@ -64,6 +80,7 @@
                     "type": "bitmap"
                 },
                 {
+                    "characterRegex": "[0-9:]",
                     "file": "fonts/Exo_50.ttf",
                     "name": "FONT_EXO_50",
                     "targetPlatforms": [

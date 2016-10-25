@@ -3,8 +3,8 @@
 #include "config.h"
 
 #define CLOCK_POS_X 0
-#define CLOCK_POS_Y 76
-#define SEC_HAND_LENGTH 52
+#define CLOCK_POS_Y 76 + 1
+#define SEC_HAND_LENGTH 58
 #define SEC_HAND_TAIL_LENGTH 20
 #define SEC_HAND_TIP_LENGTH 10
 #define MIN_HAND_LENGTH 50
@@ -12,8 +12,8 @@
 #define SEC_HAND_WIDTH 1
 #define MIN_HAND_WIDTH 7
 #define HOUR_HAND_WIDTH 9
-#define CENTER_DOT_RADIUS 9
-#define DIGITAL_CLOCK_TEXT_Y_POS 34
+#define CENTER_DOT_RADIUS 11
+#define DIGITAL_CLOCK_TEXT_Y_POS 38
 
 #define COLOUR_DOT              PBL_IF_COLOR_ELSE( GColorWhite, GColorWhite )
 #define COLOUR_DOT_OUTLINE      PBL_IF_COLOR_ELSE( GColorDarkGray, GColorBlack )
@@ -49,17 +49,8 @@ static const GPathInfo HOUR_HAND_POINTS = {
   4, (GPoint []) {
     { 0, 25 },
     { -8, 0 },
-    { 0, -55 },
+    { 0, -38 },
     { 8, 0 },
-  }
-};
-
-static const GPathInfo MINUTE_HAND_POINTS = {
-  4, (GPoint []) {
-    { 0, 25 },
-    { -7, 0 },
-    { 0, -78 },
-    { 7, 0 },
   }
 };
 
@@ -67,7 +58,16 @@ static const GPathInfo HOUR_HAND_POINTS_LEFT = {
   3, (GPoint []) {
     { 0, 25 },
     { -8, 0 },
-    { 0, -55 }
+    { 0, -38 }
+  }
+};
+
+static const GPathInfo MINUTE_HAND_POINTS = {
+  4, (GPoint []) {
+    { 0, 25 },
+    { -7, 0 },
+    { 0, -56 },
+    { 7, 0 },
   }
 };
 
@@ -75,7 +75,7 @@ static const GPathInfo MINUTE_HAND_POINTS_LEFT = {
   3, (GPoint []) {
     { 0, 25 },
     { -7, 0 },
-    { 0, -78 },
+    { 0, -56 },
   }
 };
 

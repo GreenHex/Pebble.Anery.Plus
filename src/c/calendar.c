@@ -72,24 +72,24 @@ void calendar_init( Window *window ) {
   window_layer = window_get_root_layer( window );
 
   // Black line at top
-  line_layer = bitmap_layer_create( GRect( 5, 17, 200 - 10, 1 ) );
+  line_layer = bitmap_layer_create( GRect( 5, 20, 200 - 10, 1 ) );
   bitmap_layer_set_background_color( line_layer, COLOUR_LINE_LAYER );
   layer_add_child( window_layer, bitmap_layer_get_layer( line_layer ) );
 
   // Active day bitmaps
   for ( int col = 0; col < 7; col++ ) {
-    active_day_layers[ col ] = bitmap_layer_create( GRect( 4 + ( 28 * col ), 36, 24, 21 ) );
+    active_day_layers[ col ] = bitmap_layer_create( GRect( 4 + ( 28 * col ), 39, 24, 20 ) );
     bitmap_layer_set_background_color( active_day_layers[ col ], GColorClear );
     layer_add_child( window_layer, bitmap_layer_get_layer( active_day_layers[ col ] ) );
   }
 
   // Dates...
-  cal_font = fonts_load_custom_font( resource_get_handle( RESOURCE_ID_FONT_DROIDSANS_18 ) );
+  cal_font = fonts_load_custom_font( resource_get_handle( RESOURCE_ID_FONT_DROIDSANS_16 ) );
   for ( int row = 0; row < 3 ; row++ ) {
     for ( int col = 0, layer_idx = 0; col < 7; col++ ) {
       layer_idx = col + row * 7;
       // setup layer
-      layers[ layer_idx ] = text_layer_create(GRect( 5 + ( 28 * col ), 16 + ( 19 * row ), 22, 23 ) );
+      layers[ layer_idx ] = text_layer_create(GRect( 5 + ( 28 * col ), 20 + ( 19 * row ), 22, 23 ) );
       text_layer_set_background_color( layers[ layer_idx ], GColorClear );
       text_layer_set_text_alignment( layers[ layer_idx ], GTextAlignmentCenter );
       // text_layer_set_text_color( layers[ layer_idx ], COLOUR_CAL_WEEKDAYS_TXT );

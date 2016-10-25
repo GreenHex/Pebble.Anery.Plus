@@ -43,15 +43,15 @@ static void handle_battery( BatteryChargeState charge_state ) {
 
 void battery_init( Window *window ) {
   window_layer = window_get_root_layer( window );
-  batt_layer = text_layer_create( GRect( 200-32-1, 1, 32, 15 ) );
-  batt_font = fonts_load_custom_font( resource_get_handle( RESOURCE_ID_FONT_DROIDSANS_12 ) );
+  batt_layer = text_layer_create( GRect( 200-40-1, 0, 40, 18 ) );
+  batt_font = fonts_load_custom_font( resource_get_handle( RESOURCE_ID_FONT_DROIDSANS_16 ) );
   text_layer_set_font( batt_layer, batt_font );
   text_layer_set_background_color( batt_layer, GColorClear );
   text_layer_set_text_alignment( batt_layer, GTextAlignmentRight );
   layer_add_child( window_layer, text_layer_get_layer( batt_layer ) );
 
   charging_icon_bitmap  = gbitmap_create_with_resource( RESOURCE_ID_BATTERY_CHARGING_ICON );
-  charging_icon_bitmap_layer = bitmap_layer_create( GRect( 0, 0, 8, 15 ) );
+  charging_icon_bitmap_layer = bitmap_layer_create( GRect( 0, 1, 8, 18 ) );
   bitmap_layer_set_compositing_mode( charging_icon_bitmap_layer, GCompOpSet );
   bitmap_layer_set_background_color( charging_icon_bitmap_layer, GColorClear );
   bitmap_layer_set_bitmap( charging_icon_bitmap_layer, charging_icon_bitmap );

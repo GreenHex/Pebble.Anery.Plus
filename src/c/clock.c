@@ -180,7 +180,7 @@ static void analog_clock_layer_update_proc( Layer *layer, GContext *ctx ) {
       .hand_width = MIN_HAND_WIDTH,
       .hand_color = COLOUR_MIN_HAND,
       .hand_outline_color = COLOUR_HANDS_OUTLINE,
-      .dot_radius = CENTER_DOT_RADIUS - 4,
+      .dot_radius = CENTER_DOT_RADIUS - 3,
       .dot_color = COLOUR_MIN_HAND, // COLOUR_DOT,
       .dot_outline_color = COLOUR_DOT_OUTLINE
     };
@@ -208,7 +208,7 @@ static void analog_clock_layer_update_proc( Layer *layer, GContext *ctx ) {
       .hand_width = SEC_HAND_WIDTH,
       .hand_color = COLOUR_SEC_HAND,
       .hand_outline_color = COLOUR_HANDS_OUTLINE,
-      .dot_radius = CENTER_DOT_RADIUS - 10,
+      .dot_radius = CENTER_DOT_RADIUS - 6,
       .dot_color = COLOUR_SEC_HAND, // COLOUR_DOT,
       .dot_outline_color = COLOUR_DOT_OUTLINE
     };
@@ -278,7 +278,7 @@ void clock_init( Window *window ) {
   GRect clock_layer_bounds = GRect( window_bounds.origin.x + CLOCK_POS_X, window_bounds.origin.y + CLOCK_POS_Y, 
                                    window_bounds.size.w - CLOCK_POS_X, window_bounds.size.h - CLOCK_POS_Y );
   //
-  analog_clock_bitmap = gbitmap_create_with_resource( RESOURCE_ID_ANALOG_EMERY_152 );
+  analog_clock_bitmap = gbitmap_create_with_resource( RESOURCE_ID_ANALOG_EMERY_150 );
   analog_clock_bitmap_layer = bitmap_layer_create( clock_layer_bounds );
   bitmap_layer_set_bitmap( analog_clock_bitmap_layer, analog_clock_bitmap );
   layer_add_child( window_layer, bitmap_layer_get_layer( analog_clock_bitmap_layer ) );
@@ -286,7 +286,7 @@ void clock_init( Window *window ) {
   
   analog_clock_layer = layer_create_with_data( layer_get_bounds( bitmap_layer_get_layer( analog_clock_bitmap_layer ) ),
                                               sizeof( struct ANALOG_LAYER_DATA ) );
-  ( (struct ANALOG_LAYER_DATA *) layer_get_data( analog_clock_layer ) )->show_seconds = false;
+  ( (struct ANALOG_LAYER_DATA *) layer_get_data( analog_clock_layer ) )->show_seconds = true;
   layer_add_child( bitmap_layer_get_layer( analog_clock_bitmap_layer ), analog_clock_layer );
   layer_set_update_proc( analog_clock_layer, analog_clock_layer_update_proc ); 
   layer_set_hidden( analog_clock_layer, true );
@@ -309,7 +309,7 @@ void clock_init( Window *window ) {
   };
   unobstructed_area_service_subscribe( handler, window_layer );
 
-  tick_timer_service_subscribe( MINUTE_UNIT, handle_clock_tick );
+  tick_timer_service_subscribe( SECOND_UNIT, handle_clock_tick );
 
   // show current time
   draw_clock();

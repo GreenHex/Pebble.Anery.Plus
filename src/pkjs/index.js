@@ -5,7 +5,6 @@ var clay = new Clay( clayConfig, clayManipulator, { autoHandleEvents: false } );
 var MESSAGE_KEYS = require( 'message_keys' );
 var weatherID = require( './weather_id' );
 
-
 var DEBUG = 0;
 
 var CMD_TYPES = {
