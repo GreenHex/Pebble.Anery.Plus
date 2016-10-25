@@ -45,7 +45,7 @@ void battery_init( Window *window ) {
   window_layer = window_get_root_layer( window );
   batt_layer = text_layer_create( GRect( 200-40-1, 0, 40, 18 ) );
   batt_font = fonts_load_custom_font( resource_get_handle( RESOURCE_ID_FONT_DROIDSANS_16 ) );
-  text_layer_set_font( batt_layer, batt_font );
+  text_layer_set_font( batt_layer, /* fonts_get_system_font( FONT_KEY_GOTHIC_18_BOLD ) */ batt_font );
   text_layer_set_background_color( batt_layer, GColorClear );
   text_layer_set_text_alignment( batt_layer, GTextAlignmentRight );
   layer_add_child( window_layer, text_layer_get_layer( batt_layer ) );

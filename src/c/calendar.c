@@ -93,7 +93,7 @@ void calendar_init( Window *window ) {
       text_layer_set_background_color( layers[ layer_idx ], GColorClear );
       text_layer_set_text_alignment( layers[ layer_idx ], GTextAlignmentCenter );
       // text_layer_set_text_color( layers[ layer_idx ], COLOUR_CAL_WEEKDAYS_TXT );
-      text_layer_set_font( layers[ layer_idx ], cal_font );
+      text_layer_set_font( layers[ layer_idx ], /* fonts_get_system_font( FONT_KEY_GOTHIC_18_BOLD ) */ cal_font );
       layer_add_child( window_layer, text_layer_get_layer( layers[ layer_idx ] ) );
     }
   }
