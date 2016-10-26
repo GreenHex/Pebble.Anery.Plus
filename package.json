@@ -4,13 +4,13 @@
         "pebble-clay": "^1.0.2"
     },
     "keywords": [],
-    "name": "bliss-time-2",
+    "name": "anery",
     "pebble": {
         "capabilities": [
             "location",
             "configurable"
         ],
-        "displayName": "Bliss Time 2",
+        "displayName": "Anery+",
         "enableMultiJS": true,
         "messageKeys": [
             "STATUS_TEXT",
@@ -139,5 +139,5 @@
             "watchface": true
         }
     },
-    "version": "3.47.0"
+    "version": "1.0.0"
 }

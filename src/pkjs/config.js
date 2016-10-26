@@ -1,7 +1,7 @@
 module.exports = [
   {
     "type": "heading",
-    "defaultValue": "Bliss Time 2"
+    "defaultValue": "Anery+"
   },
   {
     "type": "text",
