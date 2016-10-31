@@ -13,7 +13,7 @@
 #define MIN_HAND_WIDTH 7
 #define HOUR_HAND_WIDTH 9
 #define CENTER_DOT_RADIUS 11
-#define DIGITAL_CLOCK_TEXT_Y_POS 38
+#define DIGITAL_CLOCK_TEXT_Y_POS 27
 
 #define COLOUR_DOT              PBL_IF_COLOR_ELSE( GColorWhite, GColorWhite )
 #define COLOUR_DOT_OUTLINE      PBL_IF_COLOR_ELSE( GColorBlack, GColorBlack )
@@ -22,7 +22,7 @@
 #define COLOUR_MIN_HAND         PBL_IF_COLOR_ELSE( GColorChromeYellow /* GColorOrange */, GColorWhite )
 #define COLOUR_SEC_HAND         PBL_IF_COLOR_ELSE( GColorWhite, GColorWhite )
 #define COLOUR_SEC_HAND_TIP     PBL_IF_COLOR_ELSE( GColorDarkCandyAppleRed, GColorWhite )
-#define COLOUR_DIGITAL_FG       PBL_IF_COLOR_ELSE( GColorChromeYellow, GColorWhite )
+#define COLOUR_DIGITAL_FG       PBL_IF_COLOR_ELSE( GColorWhite /* GColorChromeYellow */, GColorWhite )
 #define COLOUR_DIGITAL_BG       PBL_IF_COLOR_ELSE( GColorBlack, GColorBlack )
 
 enum CLOCK_TYPE {

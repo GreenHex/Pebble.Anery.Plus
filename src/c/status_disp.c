@@ -52,7 +52,7 @@ void get_status( struct tm *tick_time, bool ignoreUpdateInterval ) {
 
 void status_init( Window *window ) {
   window_layer = window_get_root_layer( window );
-  s_status_layer = text_layer_create( GRect( 2, 0, 152, 18 ) );
+  s_status_layer = text_layer_create( GRect( 2, 0, 152, 20 ) );
   status_font = fonts_load_custom_font( resource_get_handle( RESOURCE_ID_FONT_DROIDSANS_16 ) );
   text_layer_set_font( s_status_layer, /* fonts_get_system_font( FONT_KEY_GOTHIC_18_BOLD ) */ status_font );
   text_layer_set_background_color( s_status_layer, GColorClear );

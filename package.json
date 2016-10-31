@@ -39,15 +39,7 @@
         "resources": {
             "media": [
                 {
-                    "file": "images/Analog Emery 150.png",
-                    "name": "ANALOG_EMERY_150",
-                    "targetPlatforms": [
-                        "emery"
-                    ],
-                    "type": "bitmap"
-                },
-                {
-                    "file": "fonts/DroidSans_16.ttf",
+                    "file": "fonts/DroidSans.ttf",
                     "name": "FONT_DROIDSANS_16",
                     "targetPlatforms": [
                         "emery"
@@ -55,8 +47,35 @@
                     "type": "font"
                 },
                 {
-                    "file": "images/Analog Emery 152.png",
-                    "name": "ANALOG_EMERY_152",
+                    "characterRegex": "[0-9:]",
+                    "file": "fonts/Exo.ttf",
+                    "name": "FONT_EXO_MEDIUM_70",
+                    "targetPlatforms": [
+                        "emery"
+                    ],
+                    "type": "font"
+                },
+                {
+                    "characterRegex": "[0-9:]",
+                    "file": "fonts/Exo.ttf",
+                    "name": "FONT_EXO_MEDIUM_50",
+                    "targetPlatforms": [
+                        "emery"
+                    ],
+                    "type": "font"
+                },
+                {
+                    "characterRegex": "[0-9:]",
+                    "file": "fonts/Exo.ttf",
+                    "name": "FONT_EXO_MEDIUM_60",
+                    "targetPlatforms": [
+                        "emery"
+                    ],
+                    "type": "font"
+                },
+                {
+                    "file": "images/Analog Emery 150.png",
+                    "name": "ANALOG_EMERY_150",
                     "targetPlatforms": [
                         "emery"
                     ],
@@ -78,55 +97,6 @@
                         "emery"
                     ],
                     "type": "bitmap"
-                },
-                {
-                    "characterRegex": "[0-9:]",
-                    "file": "fonts/Exo_50.ttf",
-                    "name": "FONT_EXO_50",
-                    "targetPlatforms": [
-                        "emery"
-                    ],
-                    "type": "font"
-                },
-                {
-                    "file": "fonts/DroidSans_38.ttf",
-                    "name": "FONT_DROIDSANS_38",
-                    "targetPlatforms": [
-                        "emery"
-                    ],
-                    "type": "font"
-                },
-                {
-                    "file": "fonts/DroidSans_37.ttf",
-                    "name": "FONT_DROIDSANS_37",
-                    "targetPlatforms": [
-                        "emery"
-                    ],
-                    "type": "font"
-                },
-                {
-                    "file": "fonts/DroidSans_18.ttf",
-                    "name": "FONT_DROIDSANS_18",
-                    "targetPlatforms": [
-                        "emery"
-                    ],
-                    "type": "font"
-                },
-                {
-                    "file": "fonts/DroidSans_13.ttf",
-                    "name": "FONT_DROIDSANS_13",
-                    "targetPlatforms": [
-                        "emery"
-                    ],
-                    "type": "font"
-                },
-                {
-                    "file": "fonts/DroidSans_12.ttf",
-                    "name": "FONT_DROIDSANS_12",
-                    "targetPlatforms": [
-                        "emery"
-                    ],
-                    "type": "font"
                 }
             ]
         },
@@ -139,5 +109,5 @@
             "watchface": true
         }
     },
-    "version": "1.0.0"
+    "version": "1.1.0"
 }

@@ -300,7 +300,7 @@ void clock_init( Window *window ) {
   layer_add_child( window_layer, text_layer_get_layer( digital_clock_text_layer ) );
   layer_set_update_proc( text_layer_get_layer( digital_clock_text_layer ), digital_clock_text_layer_update_proc );
   layer_set_hidden( text_layer_get_layer( digital_clock_text_layer ), true );
-  large_digital_font = fonts_load_custom_font( resource_get_handle( RESOURCE_ID_FONT_EXO_50 ) );
+  large_digital_font = fonts_load_custom_font( resource_get_handle( RESOURCE_ID_FONT_EXO_MEDIUM_70 ) );
 
   // subscriptions
   UnobstructedAreaHandlers handler = {
