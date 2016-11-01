@@ -13,7 +13,7 @@
 #define MIN_HAND_WIDTH 7
 #define HOUR_HAND_WIDTH 9
 #define CENTER_DOT_RADIUS 11
-#define DIGITAL_CLOCK_TEXT_Y_POS 27
+#define DIGITAL_CLOCK_TEXT_Y_POS 32
 
 #define COLOUR_DOT              PBL_IF_COLOR_ELSE( GColorWhite, GColorWhite )
 #define COLOUR_DOT_OUTLINE      PBL_IF_COLOR_ELSE( GColorBlack, GColorBlack )
@@ -39,10 +39,6 @@ enum DIGITAL_TYPE {
 enum ANALOG_HANDS_STYLE {
   STYLE_CONTEMPORARY = 0,
   STYLE_SPIFFY_GS = 1
-};
-
-struct ANALOG_LAYER_DATA {
-  bool show_seconds;
 };
 
 static const GPathInfo HOUR_HAND_POINTS = {
@@ -79,7 +75,11 @@ static const GPathInfo MINUTE_HAND_POINTS_LEFT = {
   }
 };
 
-struct HAND_DRAW_PARAMS {
+typedef struct {
+  bool show_seconds;
+} ANALOG_LAYER_DATA;
+
+typedef struct {
   GContext *ctx;
   GPoint center_pt;
   GPoint from_pt;
@@ -90,7 +90,7 @@ struct HAND_DRAW_PARAMS {
   uint16_t dot_radius;
   GColor dot_color;
   GColor dot_outline_color;
-};
+}  HAND_DRAW_PARAMS;
 
 bool is_X_in_range( int a, int b, int x );
 void draw_clock( void );

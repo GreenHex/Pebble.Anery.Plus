@@ -81,7 +81,7 @@ static void digital_clock_text_layer_update_proc( Layer *layer, GContext *ctx ) 
   graphics_draw_text( ctx, str_time, large_digital_font, text_bounds, GTextOverflowModeWordWrap, GTextAlignmentCenter, 0 );
 }
 
-static void draw_clock_hand( struct HAND_DRAW_PARAMS *pDP ) {
+static void draw_clock_hand( HAND_DRAW_PARAMS *pDP ) {
   // dot outline
   graphics_context_set_stroke_color( pDP->ctx, pDP->dot_outline_color );
   graphics_context_set_stroke_width( pDP->ctx, 1 );
@@ -102,7 +102,7 @@ static void draw_clock_hand( struct HAND_DRAW_PARAMS *pDP ) {
 static void analog_clock_layer_update_proc( Layer *layer, GContext *ctx ) {
   // uses global tm_time
 
-  static struct HAND_DRAW_PARAMS hand_params;
+  static HAND_DRAW_PARAMS hand_params;
   GRect layer_bounds = layer_get_bounds( layer );
   GPoint center_pt = grect_center_point( &layer_bounds );
   uint32_t hour_angle = ( TRIG_MAX_ANGLE * ( ( ( tm_time.tm_hour % 12 ) * 6 ) + ( tm_time.tm_min / 10 ) ) ) / ( 12 * 6 );
@@ -140,7 +140,7 @@ static void analog_clock_layer_update_proc( Layer *layer, GContext *ctx ) {
     graphics_context_set_stroke_color( ctx, COLOUR_DOT_OUTLINE );
     gpath_draw_outline( ctx, s_minute_arrow );
     
-    if ( ! ( (struct ANALOG_LAYER_DATA *) layer_get_data( analog_clock_layer ) )->show_seconds ) {
+    if ( ! ( (ANALOG_LAYER_DATA *) layer_get_data( analog_clock_layer ) )->show_seconds ) {
       graphics_context_set_fill_color( ctx, GColorBlack );
       graphics_fill_circle( ctx, center_pt, 2 );
     } 
@@ -152,7 +152,7 @@ static void analog_clock_layer_update_proc( Layer *layer, GContext *ctx ) {
     };
 
     // hour hand
-    hand_params = (struct HAND_DRAW_PARAMS) {
+    hand_params = (HAND_DRAW_PARAMS) {
       .ctx = ctx,
       .center_pt = center_pt,
       .from_pt = center_pt,
@@ -172,7 +172,7 @@ static void analog_clock_layer_update_proc( Layer *layer, GContext *ctx ) {
     };
 
     // minute hand
-    hand_params = (struct HAND_DRAW_PARAMS) {
+    hand_params = (HAND_DRAW_PARAMS) {
       .ctx = ctx,
       .center_pt = center_pt,
       .from_pt = center_pt,
@@ -187,7 +187,7 @@ static void analog_clock_layer_update_proc( Layer *layer, GContext *ctx ) {
     draw_clock_hand( &hand_params );
   }
 
-  if ( ( (struct ANALOG_LAYER_DATA *) layer_get_data( analog_clock_layer ) )->show_seconds ) {
+  if ( ( (ANALOG_LAYER_DATA *) layer_get_data( analog_clock_layer ) )->show_seconds ) {
     int32_t sec_angle = TRIG_MAX_ANGLE * tm_time.tm_sec / 60;
     int32_t sec_tail_angle = sec_angle + ( TRIG_MAX_ANGLE / 2 );
     GPoint sec_hand = (GPoint) {
@@ -200,7 +200,7 @@ static void analog_clock_layer_update_proc( Layer *layer, GContext *ctx ) {
     };  
 
    // second hand
-    hand_params = (struct HAND_DRAW_PARAMS) {
+    hand_params = (HAND_DRAW_PARAMS) {
       .ctx = ctx,
       .center_pt = center_pt,
       .from_pt = sec_hand,
@@ -251,7 +251,7 @@ static void stop_seconds_display( void* data ) { // after timer elapses
   if ( secs_display_apptimer) app_timer_cancel( secs_display_apptimer ); // Just for fun.
   secs_display_apptimer = 0; // if we are here, we know for sure that timer has expired. 
 
-  ( (struct ANALOG_LAYER_DATA *) layer_get_data( analog_clock_layer ) )->show_seconds = false;
+  ( (ANALOG_LAYER_DATA *) layer_get_data( analog_clock_layer ) )->show_seconds = false;
 
   tick_timer_service_subscribe( MINUTE_UNIT, handle_clock_tick );
 }
@@ -263,7 +263,7 @@ static void start_seconds_display( AccelAxisType axis, int32_t direction ) {
 
   tick_timer_service_subscribe( SECOND_UNIT, handle_clock_tick );
 
-  ( (struct ANALOG_LAYER_DATA *) layer_get_data( analog_clock_layer ) )->show_seconds = true;
+  ( (ANALOG_LAYER_DATA *) layer_get_data( analog_clock_layer ) )->show_seconds = true;
   //
   if ( secs_display_apptimer ) {
     app_timer_reschedule( secs_display_apptimer, (uint32_t) persist_read_int( MESSAGE_KEY_ANALOG_SECONDS_DISPLAY_TIMEOUT_SECS ) * 1000 );
@@ -285,8 +285,8 @@ void clock_init( Window *window ) {
   layer_set_hidden( bitmap_layer_get_layer( analog_clock_bitmap_layer ), true );
   
   analog_clock_layer = layer_create_with_data( layer_get_bounds( bitmap_layer_get_layer( analog_clock_bitmap_layer ) ),
-                                              sizeof( struct ANALOG_LAYER_DATA ) );
-  ( (struct ANALOG_LAYER_DATA *) layer_get_data( analog_clock_layer ) )->show_seconds = false;
+                                              sizeof( ANALOG_LAYER_DATA ) );
+  ( (ANALOG_LAYER_DATA *) layer_get_data( analog_clock_layer ) )->show_seconds = false;
   layer_add_child( bitmap_layer_get_layer( analog_clock_bitmap_layer ), analog_clock_layer );
   layer_set_update_proc( analog_clock_layer, analog_clock_layer_update_proc ); 
   layer_set_hidden( analog_clock_layer, true );
@@ -300,7 +300,7 @@ void clock_init( Window *window ) {
   layer_add_child( window_layer, text_layer_get_layer( digital_clock_text_layer ) );
   layer_set_update_proc( text_layer_get_layer( digital_clock_text_layer ), digital_clock_text_layer_update_proc );
   layer_set_hidden( text_layer_get_layer( digital_clock_text_layer ), true );
-  large_digital_font = fonts_load_custom_font( resource_get_handle( RESOURCE_ID_FONT_EXO_MEDIUM_70 ) );
+  large_digital_font = fonts_load_custom_font( resource_get_handle( RESOURCE_ID_FONT_EXO_MEDIUM_60 ) );
 
   // subscriptions
   UnobstructedAreaHandlers handler = {
