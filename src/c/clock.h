@@ -22,7 +22,7 @@
 #define COLOUR_MIN_HAND         PBL_IF_COLOR_ELSE( GColorChromeYellow /* GColorOrange */, GColorWhite )
 #define COLOUR_SEC_HAND         PBL_IF_COLOR_ELSE( GColorWhite, GColorWhite )
 #define COLOUR_SEC_HAND_TIP     PBL_IF_COLOR_ELSE( GColorDarkCandyAppleRed, GColorWhite )
-#define COLOUR_DIGITAL_FG       PBL_IF_COLOR_ELSE( GColorWhite /* GColorChromeYellow */, GColorWhite )
+#define COLOUR_DIGITAL_FG       PBL_IF_COLOR_ELSE( GColorChromeYellow, GColorWhite )
 #define COLOUR_DIGITAL_BG       PBL_IF_COLOR_ELSE( GColorBlack, GColorBlack )
 
 enum CLOCK_TYPE {

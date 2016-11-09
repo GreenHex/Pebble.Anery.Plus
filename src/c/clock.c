@@ -16,7 +16,9 @@ static GPath *s_minute_arrow = 0;
 static GPath *s_hour_arrow_left = 0;
 static GPath *s_minute_arrow_left = 0;
 static GFont large_digital_font = 0;
-static AppTimer* secs_display_apptimer = 0; 
+#ifndef SECONDS_ALWAYS_ON
+static AppTimer* secs_display_apptimer = 0;
+#endif
 static tm tm_time;
 
 static void start_seconds_display( AccelAxisType axis, int32_t direction );
@@ -33,12 +35,16 @@ void draw_clock( void ) {
     layer_set_hidden( text_layer_get_layer( digital_clock_text_layer ), true );
     layer_set_hidden( bitmap_layer_get_layer( analog_clock_bitmap_layer ), false );
     layer_set_hidden( analog_clock_layer, false );
+    #ifndef SECONDS_ALWAYS_ON
     if ( persist_read_int( MESSAGE_KEY_ANALOG_SECONDS_DISPLAY_TIMEOUT_SECS ) ) accel_tap_service_subscribe( start_seconds_display );
+    #endif
   } else { // digital
     layer_set_hidden( bitmap_layer_get_layer( analog_clock_bitmap_layer ), true );
     layer_set_hidden( analog_clock_layer, true );
     layer_set_hidden( text_layer_get_layer( digital_clock_text_layer ), false );
+    #ifndef SECONDS_ALWAYS_ON
     accel_tap_service_unsubscribe();
+    #endif
   }
   get_status( &tm_time, true );
 }
@@ -247,6 +253,7 @@ static void prv_unobstructed_did_change( void *context ) {
   // GRect full_bounds = layer_get_bounds( window_layer );  
 }
 
+#ifndef SECONDS_ALWAYS_ON
 static void stop_seconds_display( void* data ) { // after timer elapses
   if ( secs_display_apptimer) app_timer_cancel( secs_display_apptimer ); // Just for fun.
   secs_display_apptimer = 0; // if we are here, we know for sure that timer has expired. 
@@ -271,6 +278,7 @@ static void start_seconds_display( AccelAxisType axis, int32_t direction ) {
     secs_display_apptimer = app_timer_register( (uint32_t) persist_read_int( MESSAGE_KEY_ANALOG_SECONDS_DISPLAY_TIMEOUT_SECS ) * 1000, stop_seconds_display, 0 );
   }
 }
+#endif
 
 void clock_init( Window *window ) {
   window_layer = window_get_root_layer( window );
@@ -286,7 +294,12 @@ void clock_init( Window *window ) {
   
   analog_clock_layer = layer_create_with_data( layer_get_bounds( bitmap_layer_get_layer( analog_clock_bitmap_layer ) ),
                                               sizeof( ANALOG_LAYER_DATA ) );
+  #ifdef SECONDS_ALWAYS_ON
+  ( (ANALOG_LAYER_DATA *) layer_get_data( analog_clock_layer ) )->show_seconds = true;
+  #else
   ( (ANALOG_LAYER_DATA *) layer_get_data( analog_clock_layer ) )->show_seconds = false;
+  #endif
+  
   layer_add_child( bitmap_layer_get_layer( analog_clock_bitmap_layer ), analog_clock_layer );
   layer_set_update_proc( analog_clock_layer, analog_clock_layer_update_proc ); 
   layer_set_hidden( analog_clock_layer, true );
@@ -309,15 +322,21 @@ void clock_init( Window *window ) {
   };
   unobstructed_area_service_subscribe( handler, window_layer );
 
+  #ifdef SECONDS_ALWAYS_ON
+  tick_timer_service_subscribe( SECOND_UNIT, handle_clock_tick );
+  #else
   tick_timer_service_subscribe( MINUTE_UNIT, handle_clock_tick );
-
+  #endif
+  
   // show current time
   draw_clock();
 }
 
 void clock_deinit( void ) {
+  #ifndef SECONDS_ALWAYS_ON
   if ( secs_display_apptimer ) app_timer_cancel( secs_display_apptimer );
   accel_tap_service_unsubscribe(); // are we over-unsubscribing?
+  #endif
   tick_timer_service_unsubscribe();
   gpath_destroy( s_minute_arrow );
   gpath_destroy( s_minute_arrow_left );
