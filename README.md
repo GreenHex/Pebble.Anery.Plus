@@ -1,2 +1,2 @@
 # Pebble.Anery.Plus
-Analog watchface the Pebble with additional features.
+Analog watchface the Emery platform with additional features.
